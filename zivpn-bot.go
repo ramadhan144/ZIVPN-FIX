@@ -37,8 +37,8 @@ const (
 
 	// Pakasir Configuration - GANTI DENGAN MILIK ANDA!
 	PakasirBaseURL   = "https://app.pakasir.com/api"
-	PakasirProject   = "your_project_slug"     // Slug project dari Pakasir dashboard
-	PakasirAPIKey    = "your_pakasir_api_key"  // API key dari Pakasir (jika diperlukan)
+	PakasirProject   = "zivpn_pay"     // Slug project dari Pakasir dashboard
+	PakasirAPIKey    = "S9zahTbmw4V7rjn2R9ctWRWljWYUjZxN"  // API key dari Pakasir (jika diperlukan)
 	PakasirMethod    = "qris"                  // Metode QRIS
 	PricePerDay      = 334                    // Harga per hari (RP), sesuaikan
 
