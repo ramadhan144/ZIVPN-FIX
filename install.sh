@@ -40,7 +40,7 @@ run_silent() {
 
 clear
 echo -e "${BOLD}ZiVPN UDP Installer${RESET}"
-echo -e "${GRAY}Ris-Project Edition${RESET}"
+echo -e "${GRAY}Ris-Project Edition (ZIVPN-FIX)${RESET}"
 echo ""
 
 # =========================
@@ -50,10 +50,12 @@ if [[ "$(uname -s)" != "Linux" ]] || [[ "$(uname -m)" != "x86_64" ]]; then
   print_fail "System not supported (Linux AMD64 only)"
 fi
 
-# =========================
-# ✅ VALIDASI IP VPS VIA GITHUB
-# =========================
-
+# Check OS version
+os_version=$(lsb_release -rs)
+os_name=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
+if [[ "$os_name" == "ubuntu" && "$os_version" == "20.04" ]] || [[ "$os_name" == "debian" && "$os_version" == "10" ]]; then
+  print_fail "OS not supported ($os_name $os_version)"
+fi
 
 # =========================
 # CEK INSTALASI
@@ -227,6 +229,7 @@ iptables -t nat -A PREROUTING -i "$iface" -p udp --dport 6000:19999 -j DNAT --to
 ufw allow 6000:19999/udp
 ufw allow 5667/udp
 ufw allow 8080/tcp
+ufw allow 443/tcp  # Tambah untuk Telegram API outbound
 
 echo ""
 echo -e "${BOLD}Installation Complete${RESET}"
